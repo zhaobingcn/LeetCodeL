@@ -52,10 +52,6 @@ public class problem2 {
     }
     static int[] findParents(int nodes[][], int leaves[], int rel[][], int depath[], int N, int M, int K){
 
-        ArrayList<Integer> allHaveRelNodes = new ArrayList<>();
-        for(int i=0; i<K ;i++){
-            allHaveRelNodes.add(leaves[i]);
-        }
         int parents[] = new int[N+1];
         boolean isLeaf[] = new boolean[N+1];
         for(int i=0; i<K; i++){
@@ -66,10 +62,11 @@ public class problem2 {
 
         while(parentLevel >= 0) {
             int parentIndex = 0;
+            while (parentIndex < depath[parentLevel] && isLeaf[nodes[parentLevel][parentIndex]]) {
+                parentIndex++;
+            }
             for (int nodeIndex = 0; nodeIndex < depath[nowLevel]; nodeIndex++) {
-                while (parentIndex < depath[parentLevel] && isLeaf[nodes[parentLevel][parentIndex]]) {
-                    parentIndex++;
-                }
+
                 if(parentIndex >= depath[parentLevel]){
                     break;
                 }
@@ -77,7 +74,6 @@ public class problem2 {
                 /**
                  * 更新距离 需要继续想
                  */
-
                 for (int i = 0; i < depath[parentLevel]; i++) {
                     if(isLeaf[nodes[parentLevel][i]]){
                         rel[nodes[parentLevel][i]][nodes[parentLevel][parentIndex]] = Math.abs(rel[nodes[nowLevel][nodeIndex]][nodes[parentLevel][i]] - 1);
@@ -85,9 +81,13 @@ public class problem2 {
 
                     }
                 }
+                for (int i = 0; i < depath[nowLevel]; i++){
+                    if(isLeaf[nodes[nowLevel][i]] && i!=nodeIndex){
+                        rel[nodes[nowLevel][i]][nodes[parentLevel][parentIndex]] = Math.abs(rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][i]] - 1);
+                        rel[nodes[parentLevel][parentIndex]][nodes[nowLevel][i]] = Math.abs(rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][i]] - 1);
+                    }
+                }
 
-
-                allHaveRelNodes.add(nodes[parentLevel][parentIndex]);
                 isLeaf[nodes[parentLevel][parentIndex]] = true;
 
                 if (nodeIndex + 1 < depath[nowLevel] && rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][nodeIndex + 1]] > 1) {
