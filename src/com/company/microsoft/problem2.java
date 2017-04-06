@@ -103,6 +103,4 @@ public class problem2 {
         }
         return parents;
     }
-
-
 }
