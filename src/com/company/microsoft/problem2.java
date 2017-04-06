@@ -38,7 +38,7 @@ public class problem2 {
         }
 
         int parents[] = findParents(nodes, leaves, rel, depath, N, M, K);
-        for(int i=0; i<parents.length; i++){
+        for(int i=1; i<parents.length; i++){
             System.out.print(parents[i]);
         }
         System.out.println();
@@ -67,6 +67,7 @@ public class problem2 {
             }
             for (int nodeIndex = 0; nodeIndex < depath[nowLevel]; nodeIndex++) {
 
+
                 if(parentIndex >= depath[parentLevel]){
                     break;
                 }
@@ -90,8 +91,11 @@ public class problem2 {
 
                 isLeaf[nodes[parentLevel][parentIndex]] = true;
 
-                if (nodeIndex + 1 < depath[nowLevel] && rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][nodeIndex + 1]] > 1) {
+                if (nodeIndex + 1 < depath[nowLevel] && rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][nodeIndex + 1]] > 2) {
                     parentIndex++;
+                    while (parentIndex < depath[parentLevel] && isLeaf[nodes[parentLevel][parentIndex]]) {
+                        parentIndex++;
+                    }
                 }
             }
             parentLevel--;
