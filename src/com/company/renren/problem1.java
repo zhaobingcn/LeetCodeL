@@ -1,6 +1,7 @@
 package com.company.renren;
 
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class problem1 {
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> a = new ArrayList<>();
         int num = scanner.nextInt();
         int seq[] = new int[num];
         for(int i=0; i<num; i++){
