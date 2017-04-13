@@ -21,10 +21,6 @@ public class rebuild_binary_tree_6 {
         TreeNode(int val){
             this.val = val;
         }
-        TreeNode(){
-
-        }
-
     }
     public static TreeNode reConstructBinaryTree(int [] pre,int [] in) throws Exception{
 
@@ -34,10 +30,10 @@ public class rebuild_binary_tree_6 {
         if(pre.length != in.length){
             System.out.println("输入错误，长度不一样");
         }
-        TreeNode root = new TreeNode();
+        TreeNode root = null;
         for(int i=0; i<in.length; i++){
             if(in[i] == pre[0]){
-                root.val = pre[0];
+                root = new TreeNode(pre[0]);
 //                System.out.println(root.val);
                 root.left = reConstructBinaryTree(Arrays.copyOfRange(pre, 1, i+1), Arrays.copyOfRange(in, 0, i));
                 root.right = reConstructBinaryTree(Arrays.copyOfRange(pre, i+1, pre.length), Arrays.copyOfRange(in, i+1, in.length));
