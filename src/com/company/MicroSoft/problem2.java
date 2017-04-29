@@ -1,38 +1,106 @@
-package com.company.MicroSoft;
+package com.company.microsoft;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by zhzy on 2017/4/2.
+ * Created by zhzy on 2017/4/3.
  */
 public class problem2 {
-
     public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        int n = input.nextInt();
-        int m = input.nextInt();
-        int k = input.nextInt();
-        int depathCount[] = new int[m];
-        int nodes[][] = new int[m][];
-        for(int i=0; i<m; i++){
-            depathCount[i] = input.nextInt();
-            nodes[i] = new int[depathCount[i]];
-        }
 
-        for(int i=0; i<m; i++){
-            for(int j=0; j<depathCount[i]; j++){
+        Scanner input = new Scanner(System.in);
+        int N = input.nextInt();
+        int M = input.nextInt();
+        int K = input.nextInt();
+
+        int depath[] = new int[M];
+        for(int i=0; i<M; i++){
+            depath[i] = input.nextInt();
+        }
+        int nodes[][] = new int[M][];
+        for(int i=0; i<M; i++){
+            nodes[i] = new int[depath[i]];
+            for(int j=0; j<depath[i]; j++){
                 nodes[i][j] = input.nextInt();
             }
         }
 
-        int leaf[] = new int[k];
-        for(int i=0; i<k; i++){
-            leaf[i] = input.nextInt();
+        int leaves[] = new int[K];
+        for(int i=0; i<K; i++){
+            leaves[i] = input.nextInt();
         }
+        int rel[][] = new int[N+1][N+1];
+        for(int i=0; i<K; i++){
+            for(int j=0; j<K; j++){
+                rel[leaves[i]][leaves[j]] = input.nextInt();
+            }
+        }
+
+        int parents[] = findParents(nodes, leaves, rel, depath, N, M, K);
+        for(int i=1; i<parents.length; i++){
+            System.out.print(parents[i]);
+        }
+        System.out.println();
+        for(int i=0; i<N+1; i++){
+            for(int j=0; j<N+1; j++){
+                System.out.print(rel[i][j]);
+            }
+            System.out.println();
+        }
+
     }
+    static int[] findParents(int nodes[][], int leaves[], int rel[][], int depath[], int N, int M, int K){
 
-    static int[] findParents(){
+        int parents[] = new int[N+1];
+        boolean isLeaf[] = new boolean[N+1];
+        for(int i=0; i<K; i++){
+            isLeaf[leaves[i]] = true;
+        }
+        int nowLevel = M-1;
+        int parentLevel = M-2;
 
-        return null;
+        while(parentLevel >= 0) {
+            int parentIndex = 0;
+            while (parentIndex < depath[parentLevel] && isLeaf[nodes[parentLevel][parentIndex]]) {
+                parentIndex++;
+            }
+            for (int nodeIndex = 0; nodeIndex < depath[nowLevel]; nodeIndex++) {
+
+
+                if(parentIndex >= depath[parentLevel]){
+                    break;
+                }
+                parents[nodes[nowLevel][nodeIndex]] = nodes[parentLevel][parentIndex];
+                /**
+                 * 更新距离 需要继续想
+                 */
+                for (int i = 0; i < depath[parentLevel]; i++) {
+                    if(isLeaf[nodes[parentLevel][i]]){
+                        rel[nodes[parentLevel][i]][nodes[parentLevel][parentIndex]] = Math.abs(rel[nodes[nowLevel][nodeIndex]][nodes[parentLevel][i]] - 1);
+                        rel[nodes[parentLevel][parentIndex]][nodes[parentLevel][i]] = Math.abs(rel[nodes[nowLevel][nodeIndex]][nodes[parentLevel][i]] - 1);
+
+                    }
+                }
+                for (int i = 0; i < depath[nowLevel]; i++){
+                    if(isLeaf[nodes[nowLevel][i]] && i!=nodeIndex){
+                        rel[nodes[nowLevel][i]][nodes[parentLevel][parentIndex]] = Math.abs(rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][i]] - 1);
+                        rel[nodes[parentLevel][parentIndex]][nodes[nowLevel][i]] = Math.abs(rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][i]] - 1);
+                    }
+                }
+
+                isLeaf[nodes[parentLevel][parentIndex]] = true;
+
+                if (nodeIndex + 1 < depath[nowLevel] && rel[nodes[nowLevel][nodeIndex]][nodes[nowLevel][nodeIndex + 1]] > 2) {
+                    parentIndex++;
+                    while (parentIndex < depath[parentLevel] && isLeaf[nodes[parentLevel][parentIndex]]) {
+                        parentIndex++;
+                    }
+                }
+            }
+            parentLevel--;
+            nowLevel--;
+        }
+        return parents;
     }
 }
