@@ -6,8 +6,14 @@ import java.util.ArrayList;
  * Created by zhzy on 2017/4/13.
  */
 public class small_k {
-    public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
 
+    public static void main(String[] args){
+
+        int []array = {4,6,8,7,1,3,5,2};
+        ArrayList<Integer> result = GetLeastNumbers_Solution(array, 7);
+        System.out.println(result);
+    }
+    public static ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
         int low = 0;
         int high = input.length-1;
         ArrayList<Integer> output = new ArrayList<Integer>();
@@ -28,8 +34,8 @@ public class small_k {
         return output;
     }
 
-    public int Partation(int[] array, int low, int high){
-        int temp = array[0];
+    public static int Partation(int[] array, int low, int high){
+        int temp = array[low];
         while(low < high){
             while(low < high && array[high] >=temp){
                 high --;
