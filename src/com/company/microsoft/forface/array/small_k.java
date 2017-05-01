@@ -9,8 +9,8 @@ public class small_k {
 
     public static void main(String[] args){
 
-        int []array = {4,6,8,7,1,3,5,2};
-        ArrayList<Integer> result = GetLeastNumbers_Solution(array, 7);
+        int []array = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+        ArrayList<Integer> result = GetLeastNumbers_Solution(array, 18);
         System.out.println(result);
     }
     public static ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
