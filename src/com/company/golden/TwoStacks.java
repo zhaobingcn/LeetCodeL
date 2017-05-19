@@ -9,7 +9,7 @@ import java.util.Stack;
 public class TwoStacks {
 
     public static void main(String[] args){
-        int numbers[] = {1,2,3,4,5};
+        int numbers[] = {1,2,3,4,5,10,23,33,45,45,45,3,35,3,54,3,35,45,23,54,35565,4545,64,545,46,4,453,456,4,5,3454,5,6,6};
         System.out.println(twoStacksSort(numbers));
     }
 
