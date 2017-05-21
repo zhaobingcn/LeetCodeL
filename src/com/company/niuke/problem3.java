@@ -39,7 +39,7 @@ public class problem3 {
         }
 
         for(int j=0; j<n-1; j++){
-            sum[j] =
+            sum[j] =3;
         }
 
     }

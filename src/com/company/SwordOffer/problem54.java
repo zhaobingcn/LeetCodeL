@@ -45,11 +45,11 @@ public class problem54 {
             if((pattern[0] == '.' && str.length>0) || pattern[0] == str[0])
                 return matchCore(Arrays.copyOfRange(str, 1,str.length), Arrays.copyOfRange(pattern, 1, pattern.length));
         }
-        if(str.length==0 && pattern.length >0){
-            if(pattern[0] == '.'){
-                return matchCore()
-            }
-        }
+//        if(str.length==0 && pattern.length >0){
+//            if(pattern[0] == '.'){
+//                return ;
+//            }
+//        }
         return false;
 
     }
