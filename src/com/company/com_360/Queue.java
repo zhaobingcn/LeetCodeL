@@ -25,11 +25,6 @@ public class Queue {
     }
 
     /**
-     *
-     * @param man
-     * @param famle
-     * @param allAQueues
-     * @param queue
      * 主要思路，从头开始的话看前面是什么安排，主要有三种情况，当当前剩余的man == famle，证明前面符合，但是当前拍下一个的只能是man
      * 因为如果排famle的话，当前队列中famle大于man显然是不对的
      * 当当前的man大于famle,并且当前的famle大于0就有两种情况，既可以放man又可以放famle，因为都可以满足提议
