@@ -43,23 +43,6 @@ public class Box {
             }
         });
 
-//        int MaxHeightToSelf[] = new int[n + 2];
-//
-//        int res = 0;
-//        for(int i=1; i<=n; i++){
-//            int max = 0;
-//            for(int j=1; j<i; j++){
-//                if(boxes[j-1].wi < boxes[i-1].wi && boxes[j-1].li < boxes[i-1].li){
-//                    if(max < MaxHeightToSelf[j]){
-//                        max = MaxHeightToSelf[j];
-//                    }
-//                }
-//            }
-//            MaxHeightToSelf[i] = max + boxes[i-1].hi;
-//            res = Math.max(res, MaxHeightToSelf[i]);
-//        }
-//        return res;
-
         int MaxHeightToSelf[] = new int[n + 1];
 
         MaxHeightToSelf[0] = boxes[0].hi;

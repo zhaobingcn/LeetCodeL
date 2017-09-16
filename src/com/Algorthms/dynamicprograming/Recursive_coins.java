@@ -1,4 +1,4 @@
-package com.Algorthms;
+package com.Algorthms.dynamicprograming;
 
 /**
  * Created by zhzy on 2017/8/23.
@@ -6,10 +6,10 @@ package com.Algorthms;
 public class Recursive_coins {
 
     public static void main(String[] args) {
-        int coins[] = {1,8,20};
+        int coins[] = {3,6,10};
 
-        System.out.println(recursive(30, coins));
-//        System.out.println(DPchage(30, coins));
+        System.out.println(recursive(27, coins));
+//        System.out.println(DPchage(27, coins));
     }
 
     static int recursive(int money, int coins[]){
