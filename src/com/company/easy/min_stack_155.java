@@ -1,5 +1,6 @@
 package com.company.easy;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 /**
@@ -11,28 +12,46 @@ import java.util.Stack;
  * 如果栈顶元素与最小值栈栈顶元素一样，则两个栈都删除栈顶
  */
 public class min_stack_155 {
-    public class MinStack {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        MinStack mystack = new MinStack();
+        int n = in.nextInt();
+        for(int i=0; i<n; i++){
+            mystack.push(in.nextInt());
+        }
+        mystack.pop();
+        System.out.println(mystack.getMax() + "," + mystack.getMin());
+    }
+
+    static class MinStack {
 
         Stack<Integer> stack;
         Stack<Integer> minstack;
+        Stack<Integer> maxstack;
         /** initialize your data structure here. */
         public MinStack() {
             stack = new Stack<>();
             minstack = new Stack<>();
+            maxstack = new Stack<>();
         }
 
         public void push(int x) {
             if(minstack.isEmpty()){
                 minstack.push(x);
-                stack.push(x);
             }else{
                 if(x <= getMin()){
                     minstack.push(x);
-                    stack.push(x);
-                }else{
-                    stack.push(x);
                 }
             }
+            if(maxstack.isEmpty()){
+                maxstack.push(x);
+            }else {
+                if(x >= getMax()){
+                    maxstack.push(x);
+                }
+            }
+            stack.push(x);
 
         }
 
@@ -41,6 +60,10 @@ public class min_stack_155 {
                 if(stack.peek() == getMin()){
                     minstack.pop();
                     stack.pop();
+                }else if (stack.peek() == getMax()){
+                    maxstack.pop();
+                    stack.pop();
+
                 }else{
                     stack.pop();
                 }
@@ -61,6 +84,13 @@ public class min_stack_155 {
         public int getMin() {
             if(!minstack.isEmpty()){
                 return minstack.peek();
+            }else {
+                return 0;
+            }
+        }
+        public int getMax(){
+            if(!maxstack.isEmpty()){
+                return maxstack.peek();
             }else {
                 return 0;
             }
