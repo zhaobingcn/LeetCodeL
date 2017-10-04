@@ -1,12 +1,11 @@
-package com.Algorthms;
+package com.Algorthms.depthfirstsearch;
 
 import java.util.*;
 
 /**
- * Created by zhzy on 2017/10/2.
+ * Created by zhzy on 2017/10/3.
  */
-public class Depth_first_search {
-
+public class depth_first_search {
     public static void main(String[] args) {
         Employee a = new Employee(1,2, Arrays.asList(2));
         Employee b = new Employee(2,3, Arrays.asList());
@@ -41,7 +40,7 @@ public class Depth_first_search {
         }
         return result;
     }
-     static class Employee {
+    static class Employee {
         // It's the unique id of each node;
         // unique id of this employee
         public int id;
