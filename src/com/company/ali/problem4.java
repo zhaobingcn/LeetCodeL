@@ -20,7 +20,7 @@ public class problem4 {
 
         double offset = 0.0;
 
-        Arrays.co
+//        Arrays.co
 
         double before =  (m+n-2)*1.0 / (m+n);
         double after = before * 2;
