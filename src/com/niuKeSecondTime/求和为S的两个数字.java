@@ -31,9 +31,6 @@ public class 求和为S的两个数字 {
 
         int resa = 0;
         int resb = 0;
-
-
-
         while(small < big){
 
             if(sum == currentSum){

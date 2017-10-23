@@ -63,47 +63,51 @@ public class HeapSort {
 //
 //    }
 
-    void buildMaxHeap(int seq[]){
+
+    public int[] buildMaxMap(int seq[]){
+
         int len = seq.length;
-        for(int i=(len-2)/2; i>=0; i--){
-            adjustDownToUp(seq, i, len);
+        for(int i=len / 2; i>=0; i--){
+            adJustUpToDown(seq, i, len);
         }
+        return seq;
     }
 
-    void adjustDownToUp(int seq[], int k, int length){
+    void adJustUpToDown(int[] seq, int k, int length){
 
         int temp = seq[k];
-        for(int i=2*k+1; i < length; i = 2*i+1){
-            if(i+1 < length && seq[i] < seq[i+1]){
+        for(int i=2*k+1 ;  i < length; i = i*2+1){
+            if(i+1<length && seq[i] <seq[i+1]){
                 i++;
             }
-            if(seq[i] < temp){
+            if(temp > seq[i]){
                 break;
             }else {
                 seq[k] = seq[i];
-                k = i;
+                k=i;
             }
             seq[k] = temp;
         }
     }
 
-    void heapSort(int seq[]){
-        buildMaxHeap(seq);
-        for(int i=seq.length-1; i>=1; i--){
-            int temp = seq[i];
-            seq[i] = seq[0];
-            seq[0] = temp;
-            adjustDownToUp(seq, 0, i);
+    public int[] heapSort(int seq[]){
+        seq = buildMaxMap(seq);
+        for(int i = seq.length-1; i>=1; i--){
+            int temp = seq[0];
+            seq[0] = seq[i];
+            seq[i] = temp;
+            adJustUpToDown(seq, 0, i);
         }
+        return seq;
     }
 
     public static void main(String[] args) {
-        HeapSort heapSort = new HeapSort();
 
+        HeapSort heapSort = new HeapSort();
         int seq[] = {122,87,78,45 ,7, 65, 53, 9, 32 };
         heapSort.heapSort(seq);
 
-        for (int i=0; i<seq.length; i++){
+        for(int i=0; i<seq.length; i++){
             System.out.print(seq[i] + " ");
         }
     }

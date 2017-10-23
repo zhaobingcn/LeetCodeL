@@ -14,6 +14,7 @@ public class Number_of_Longest_Increasing_Subsequence {
         int nums[] = {2,2,2,2,2,2,2,2,2,2,2,2,22,3,3,3,3,3,324,3,234,2,4,2,34,234,2,4,3,4,24,2,3,4,34,45,4,545,4,34,345534,345,34,34};
 
         System.out.println(findNumberOfLIS(nums));
+
     }
 
     public static int findNumberOfLIS(int[] nums) {
@@ -43,6 +44,7 @@ public class Number_of_Longest_Increasing_Subsequence {
             if(dp[i] > all_max){
                 all_max = dp[i];
             }
+
         }
 
         for(int i=0; i<len; i++){
@@ -50,7 +52,6 @@ public class Number_of_Longest_Increasing_Subsequence {
                 max_count += dp_count[i];
             }
         }
-
         return max_count;
     }
 }
